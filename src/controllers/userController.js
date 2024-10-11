@@ -29,7 +29,7 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    
+
     // Check if the username exists
     const existingUser = await User.findOne({ username });
     if (!existingUser) {
@@ -56,9 +56,9 @@ exports.updateUserProfile = async (req, res) => {
   try {
     const { username } = req.params;
     const { newUsername } = req.body;
-
+    
     // Update the user's username
-    await User.updateOne({ username }, { username: newUsername });
+    await User.updateOne({ username: username}, { username: newUsername });
 
     return res.status(200).json({ message: 'User profile updated successfully' });
   } catch (error) {
